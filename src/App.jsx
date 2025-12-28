@@ -10,6 +10,8 @@ import initialChannels from './channels'
 import Register from './components/Register.'
 import { CheckSession } from './services/Auth'
 import Profile from './components/Profile'
+import PostDetails from './components/PostDetails'
+import posts from './posts'
 
 
 
@@ -81,8 +83,8 @@ useEffect(() => {
           <Route path="channelDetails" element={ <ChannelDetails
           newChannel={newChannel}
           handleChange={handleChange}
-          addChannel={addChannel} /> } 
-          />
+          addChannel={addChannel} /> } />
+          <Route path="/channelDetails/:id" element={ <PostDetails posts={posts}/> } />
 
 
 
