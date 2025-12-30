@@ -51,6 +51,15 @@ const PostDetails = () => {
     <div className="postDetails">
       <h1>{post && post.title}</h1>
 
+      {post?.image && (
+        <img
+          src={`http://localhost:3000${post.image}`}
+          alt="post"
+        />
+      )}
+
+
+
       <div className="post">
         <h3>Description: {post && post.body}</h3>
       </div>

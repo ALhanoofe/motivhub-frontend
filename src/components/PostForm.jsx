@@ -14,16 +14,32 @@ const PostForm = () => {
   }
 
   const [newPost, setNewPost] = useState(emptyPost)
+  const [imageFile, setImageFile] = useState(null)
+
 
   const handleChange = (e) => {
     setNewPost({ ...newPost, [e.target.name]: e.target.value })
   }
 
+  const handleImageChange = (e) => {
+    setImageFile(e.target.files[0])
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    const formData = new FormData()
+    formData.append('channel', newPost.channel)
+    formData.append('title', newPost.title)
+    formData.append('body', newPost.body)
+
+    if (imageFile) {
+      formData.append('image', imageFile)
+    }
+
+
     try {
-      await CreatePost(newPost)
+      await CreatePost(formData)
       setNewPost(emptyPost)
       navigate(`/channel/${id}`)
     } catch (error) {
@@ -53,11 +69,10 @@ const PostForm = () => {
         />
 
         <input
-          type="text"
-          name="image"
-          value={newPost.image}
-          onChange={handleChange}
-          placeholder="Image URL"
+          type="file"
+          name="image/*"
+          onChange={handleImageChange}
+
         />
 
         <button type="submit">Submit</button>

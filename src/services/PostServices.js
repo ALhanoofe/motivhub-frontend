@@ -11,9 +11,17 @@ export const GetPostsByChannel = async (channelId) => {
 }
 
 
-export const CreatePost = async (postId) => {
+export const CreatePost = async (postData) => {
   try {
-    const res = await Client.post('/posts', postId)
+    const res = await Client.post(
+      '/posts',
+      postData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+    )
     return res.data
   } catch (error) {
     throw error
