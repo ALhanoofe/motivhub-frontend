@@ -14,11 +14,11 @@ const Nav = () => {
       <div>
         <NavLink to="home">Home</NavLink>
         <> </>
-        <NavLink to="channelForm">Add Channel</NavLink>
-        <> </>
+
 
         {isLoggedIn ? (
           <>
+            <NavLink to="channelForm">Add Channel</NavLink>
             <NavLink to="profile">My Profile</NavLink>
             <NavLink to="/" onClick={handleLogOut}>Logout</NavLink>
 

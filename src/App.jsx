@@ -15,8 +15,7 @@ import { CheckSession } from './services/Auth'
 import Profile from './components/Profile'
 import PostDetails from './components/PostDetails'
 import PostForm from './components/PostForm'
-import posts from './posts'
-
+import RequireAuth from './components/RequireAuth'
 
 
 
@@ -64,16 +63,33 @@ const App = () => {
           <Route path="/home/:id" element={<ChannelDetails />} />
 
           {/* channelForm */}
-          <Route path='/channelForm' element={<ChannelForm />} />
+          <Route path='/channelForm' element={
+            <RequireAuth>
+              <ChannelForm />
+            </RequireAuth >
+          }
+          />
 
 
           {/* postFrom */}
-          <Route path='/postForm/:id' element={<PostForm />} />
+          <Route path='/postForm/:id' element={
+            <RequireAuth>
+              <PostForm />
+            </RequireAuth>
+          } />
 
           {/* channel */}
-          <Route path="/channel/:id" element={<ChannelDetails />} />
+          <Route path="/channel/:id" element={
+            <RequireAuth>
+              <ChannelDetails />
+            </RequireAuth>
+          } />
 
-          <Route path="/postDetails/:id" element={<PostDetails />} />
+          <Route path="/postDetails/:id" element={
+            <RequireAuth>
+              <PostDetails />
+            </RequireAuth>
+          } />
 
 
 
